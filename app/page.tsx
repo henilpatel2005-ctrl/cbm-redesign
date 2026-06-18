@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { HeroScrollDemo } from "@/components/hero-scroll-demo";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -184,6 +185,11 @@ export default function Home() {
             ))}
           </div>
         </motion.div>
+      </section>
+
+      {/* Scroll Animation Demo */}
+      <section className="py-20 bg-white">
+        <HeroScrollDemo />
       </section>
 
       {/* CTA Section */}
