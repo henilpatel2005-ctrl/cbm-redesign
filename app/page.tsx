@@ -99,85 +99,129 @@ export default function HomePage() {
               </motion.div>
             </motion.div>
 
-            {/* Right Watch Display */}
+            {/* Right Watch Display - Apple Watch Ultra Style */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
               className="flex justify-center lg:justify-end"
             >
-              <div className="relative w-80 h-80 md:w-96 md:h-96">
-                {/* Watch Body with realistic styling */}
+              <div className="relative" style={{ width: "300px", height: "360px" }}>
+                {/* Watch Body */}
                 <motion.div
-                  className="absolute inset-0 rounded-full flex items-center justify-center"
+                  className="absolute inset-0 flex items-center justify-center"
                   style={{
-                    background: "radial-gradient(circle at 30% 30%, #3a3a3a, #0a0a0a)",
-                    border: "8px solid #1a1a1a",
-                    boxShadow: `
-                      0 0 80px rgba(0, 87, 184, 0.4),
-                      inset 0 0 40px rgba(0, 0, 0, 0.8),
-                      0 20px 60px rgba(0, 0, 0, 0.6)
-                    `,
+                    background: "linear-gradient(135deg, #1a1a1a, #0a0a0a)",
+                    borderRadius: "60px",
+                    border: "10px solid #0f0f0f",
+                    padding: "20px",
                   }}
                   animate={{
                     boxShadow: [
-                      `0 0 60px rgba(0, 87, 184, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8), 0 20px 60px rgba(0, 0, 0, 0.6)`,
-                      `0 0 100px rgba(0, 87, 184, 0.5), inset 0 0 40px rgba(0, 0, 0, 0.8), 0 20px 60px rgba(0, 0, 0, 0.6)`,
-                      `0 0 60px rgba(0, 87, 184, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8), 0 20px 60px rgba(0, 0, 0, 0.6)`,
+                      "0 0 80px rgba(0, 87, 184, 0.3), inset 0 0 60px rgba(0, 0, 0, 0.9), 0 30px 80px rgba(0, 0, 0, 0.7)",
+                      "0 0 120px rgba(0, 87, 184, 0.5), inset 0 0 60px rgba(0, 0, 0, 0.9), 0 30px 80px rgba(0, 0, 0, 0.7)",
+                      "0 0 80px rgba(0, 87, 184, 0.3), inset 0 0 60px rgba(0, 0, 0, 0.9), 0 30px 80px rgba(0, 0, 0, 0.7)",
                     ],
                   }}
                   transition={{ duration: 3, repeat: Infinity }}
                 >
+                  {/* Digital Crown */}
+                  <div
+                    className="absolute"
+                    style={{
+                      right: "-18px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      width: "24px",
+                      height: "48px",
+                      background: "radial-gradient(circle, #2a2a2a, #0a0a0a)",
+                      border: "2px solid #1a1a1a",
+                      borderRadius: "6px 12px 12px 6px",
+                      boxShadow: "0 0 20px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(255, 255, 255, 0.05)",
+                    }}
+                  />
+
+                  {/* Action Button */}
+                  <div
+                    className="absolute"
+                    style={{
+                      right: "-35px",
+                      top: "calc(50% + 60px)",
+                      width: "16px",
+                      height: "32px",
+                      background: "radial-gradient(circle, #222, #000)",
+                      borderRadius: "50%",
+                      boxShadow: "0 0 15px rgba(0, 0, 0, 0.8)",
+                    }}
+                  />
+
                   {/* Screen Display */}
                   <div
-                    className="flex flex-col items-center justify-between py-8 px-6 text-center w-fit gap-3"
+                    className="flex flex-col items-center justify-between w-full h-full"
                     style={{
-                      width: "320px",
-                      height: "320px",
                       background: "#000000",
-                      borderRadius: "32px",
-                      border: "2px solid #222",
-                      boxShadow: "inset 0 0 30px rgba(0, 0, 0, 0.5)",
+                      borderRadius: "52px",
+                      padding: "28px 20px",
+                      border: "1.5px solid #222",
+                      boxShadow: "inset 0 0 40px rgba(0, 0, 0, 0.6)",
+                      gap: "16px",
                     }}
                   >
+                    {/* App Name */}
                     <motion.div
-                      className="text-xs font-semibold text-gray-600 uppercase tracking-widest"
+                      className="text-xs font-bold uppercase tracking-wider text-gray-600"
                       animate={{ opacity: [1, 0.7, 1] }}
                       transition={{ duration: 4, repeat: Infinity }}
                     >
                       Central Bank
                     </motion.div>
 
-                    {/* Card Mockup */}
+                    {/* Card Display */}
                     <motion.div
-                      className="w-24 h-16 bg-gradient-to-r from-blue-600 to-blue-500 rounded-lg flex items-center justify-center text-sm font-bold text-white shadow-lg"
+                      className="flex flex-col items-center justify-center gap-1 text-white font-bold rounded-2xl shadow-lg"
+                      style={{
+                        width: "110px",
+                        height: "68px",
+                        background: "linear-gradient(135deg, #0057B8, #0043a3)",
+                        borderRadius: "14px",
+                      }}
                       animate={{ scale: [1, 1.05, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
-                      💳 Card
+                      <span className="text-2xl">💳</span>
+                      <span className="text-sm">Card</span>
                     </motion.div>
 
                     {/* Balance */}
                     <motion.div
-                      className="text-white font-black leading-none"
-                      style={{ fontSize: "2.2rem", letterSpacing: "-0.02em" }}
+                      className="text-white font-black leading-tight"
+                      style={{ fontSize: "2.8rem", letterSpacing: "-0.03em" }}
                       animate={{ opacity: [1, 0.85, 1] }}
                       transition={{ duration: 4, repeat: Infinity }}
                     >
                       $5,240
                     </motion.div>
 
-                    <div className="text-xs text-gray-500">Checking</div>
+                    {/* Account Label */}
+                    <div className="text-xs text-gray-500 font-semibold tracking-wide">
+                      CHECKING
+                    </div>
 
-                    {/* Status */}
+                    {/* Status Badge */}
                     <motion.div
-                      className="flex items-center gap-1.5 bg-green-600/20 border border-green-500/60 rounded-full py-1.5 px-3 text-xs font-semibold text-green-400"
+                      className="flex items-center gap-1.5 rounded-full py-1.5 px-3 text-xs font-bold"
+                      style={{
+                        background: "rgba(118, 214, 106, 0.18)",
+                        border: "1.5px solid rgba(118, 214, 106, 0.65)",
+                        color: "#76D66A",
+                      }}
                       animate={{ opacity: [1, 0.7, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
                       <motion.span
-                        className="w-1.5 h-1.5 bg-green-500 rounded-full"
-                        animate={{ opacity: [1, 0.5, 1] }}
+                        className="w-1 h-1 rounded-full"
+                        style={{ background: "#76D66A" }}
+                        animate={{ opacity: [1, 0.4, 1] }}
                         transition={{ duration: 2, repeat: Infinity }}
                       />
                       Active
