@@ -18,8 +18,8 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-14">
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-xs">✤</span>
+              <div className="w-6 h-6 bg-emerald-800 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-xs">🍀</span>
               </div>
               <span className="font-semibold text-gray-900 text-sm">Central Bank</span>
             </div>
@@ -35,10 +35,10 @@ export default function HomePage() {
               ))}
             </div>
             <div className="flex gap-2">
-              <button className="text-gray-900 hover:text-emerald-600 px-3 py-1.5 text-sm font-medium transition-colors">
+              <button className="text-gray-900 hover:text-emerald-800 px-3 py-1.5 text-sm font-medium transition-colors">
                 Sign In
               </button>
-              <button className="bg-emerald-600 text-white hover:bg-emerald-700 px-4 py-1.5 rounded-lg text-sm font-medium transition-colors">
+              <button className="bg-emerald-800 text-white hover:bg-emerald-900 px-4 py-1.5 rounded-lg text-sm font-medium transition-colors">
                 Open Account
               </button>
             </div>
@@ -58,14 +58,17 @@ export default function HomePage() {
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
               Banking for life's moments
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-12 leading-relaxed font-light">
+            <p className="text-xl md:text-2xl text-gray-600 mb-4 leading-relaxed font-light">
               Whether it's your first home, growing business, or planning your future—we're here to help you move forward.
+            </p>
+            <p className="text-lg text-emerald-700 font-semibold mb-12">
+              Strong roots. Endless possibilities.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="bg-emerald-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-emerald-700 transition-colors flex items-center justify-center gap-2"
+                className="bg-emerald-800 text-white px-8 py-4 rounded-lg font-semibold hover:bg-emerald-900 transition-colors flex items-center justify-center gap-2"
               >
                 Open an Account
                 <ArrowRight size={20} />
@@ -73,7 +76,7 @@ export default function HomePage() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="border-2 border-gray-300 text-gray-900 px-8 py-4 rounded-lg font-semibold hover:border-gray-400 transition-colors"
+                className="border-2 border-emerald-700 text-emerald-700 px-8 py-4 rounded-lg font-semibold hover:bg-emerald-50 transition-colors"
               >
                 Talk to a Banker
               </motion.button>
@@ -85,11 +88,11 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mt-20 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-2xl aspect-video flex items-center justify-center overflow-hidden"
+            className="mt-20 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-2xl aspect-video flex items-center justify-center overflow-hidden"
           >
             <div className="text-center">
               <div className="text-6xl mb-4">📱</div>
-              <p className="text-gray-600 font-medium">Mobile Banking Experience</p>
+              <p className="text-emerald-900 font-medium">Mobile Banking Experience</p>
             </div>
           </motion.div>
         </div>
@@ -105,7 +108,7 @@ export default function HomePage() {
               { number: "500K+", label: "Happy Customers" },
             ].map((stat, i) => (
               <motion.div key={i} {...fadeInUp}>
-                <div className="text-4xl md:text-5xl font-bold text-emerald-600 mb-2">
+                <div className="text-4xl md:text-5xl font-bold text-emerald-800 mb-2">
                   {stat.number}
                 </div>
                 <p className="text-gray-600 text-lg">{stat.label}</p>
@@ -150,13 +153,13 @@ export default function HomePage() {
                 key={i}
                 {...fadeInUp}
                 whileHover={{ y: -4 }}
-                className="text-left p-8 border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-lg transition-all bg-white"
+                className="text-left p-8 border border-gray-200 rounded-xl hover:border-emerald-700 hover:shadow-lg transition-all bg-white"
               >
                 <h3 className="text-2xl font-semibold text-gray-900 mb-3">
                   {product.title}
                 </h3>
                 <p className="text-gray-600 mb-4">{product.desc}</p>
-                <div className="flex items-center text-emerald-600 font-medium">
+                <div className="flex items-center text-emerald-800 font-medium">
                   Learn more
                   <ChevronRight size={20} className="ml-2" />
                 </div>
@@ -167,14 +170,14 @@ export default function HomePage() {
       </section>
 
       {/* Experience Section */}
-      <section className="bg-gray-900 text-white py-24 px-4">
+      <section className="bg-emerald-900 text-white py-24 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <motion.div {...fadeInUp}>
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
                 Banking on your terms
               </h2>
-              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+              <p className="text-xl text-emerald-100 mb-8 leading-relaxed">
                 Mobile app, online platform, or visit us in person. Choose how you want to bank.
               </p>
               <ul className="space-y-4">
@@ -185,19 +188,19 @@ export default function HomePage() {
                   "Award-winning customer support",
                 ].map((feature, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold">✓</span>
-                    <span className="text-gray-300">{feature}</span>
+                    <span className="text-lime-300 font-bold">✓</span>
+                    <span className="text-emerald-100">{feature}</span>
                   </li>
                 ))}
               </ul>
             </motion.div>
             <motion.div
               {...fadeInUp}
-              className="bg-gray-800 rounded-2xl aspect-square flex items-center justify-center"
+              className="bg-emerald-800 rounded-2xl aspect-square flex items-center justify-center"
             >
               <div className="text-center">
                 <div className="text-6xl mb-4">💻</div>
-                <p className="text-gray-400">Digital Banking Platform</p>
+                <p className="text-emerald-200">Digital Banking Platform</p>
               </div>
             </motion.div>
           </div>
@@ -252,7 +255,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white py-24 px-4">
+      <section className="bg-gradient-to-r from-emerald-800 to-emerald-900 text-white py-24 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div {...fadeInUp}>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -264,7 +267,7 @@ export default function HomePage() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-emerald-600 px-10 py-4 rounded-lg font-semibold hover:bg-gray-50 transition-colors inline-flex items-center gap-2"
+              className="bg-white text-emerald-800 px-10 py-4 rounded-lg font-semibold hover:bg-gray-50 transition-colors inline-flex items-center gap-2"
             >
               Open Account Now
               <ArrowRight size={20} />
@@ -274,7 +277,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-16 px-4">
+      <footer className="bg-emerald-950 text-gray-400 py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             {[
