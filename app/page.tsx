@@ -1,45 +1,29 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronRight, ArrowRight } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 40 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: { duration: 0.8 },
-  viewport: { once: true, margin: "0px 0px -100px 0px" },
-};
+const easeApple = [0.22, 1, 0.36, 1];
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col bg-white overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-black overflow-x-hidden">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white border-b border-gray-100">
+      <nav className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-14">
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 bg-emerald-800 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-xs">🍀</span>
+              <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-xs">✤</span>
               </div>
-              <span className="font-semibold text-gray-900 text-sm">Central Bank</span>
-            </div>
-            <div className="hidden md:flex gap-8">
-              {["Accounts", "Loans", "Invest", "Business"].map((item) => (
-                <a
-                  key={item}
-                  href="#"
-                  className="text-gray-600 hover:text-gray-900 transition-colors text-sm"
-                >
-                  {item}
-                </a>
-              ))}
+              <span className="font-semibold text-white text-sm">Central Bank Watch</span>
             </div>
             <div className="flex gap-2">
-              <button className="text-gray-900 hover:text-emerald-800 px-3 py-1.5 text-sm font-medium transition-colors">
+              <button className="text-gray-300 hover:text-white px-3 py-1.5 text-sm font-medium transition-colors">
                 Sign In
               </button>
-              <button className="bg-emerald-800 text-white hover:bg-emerald-900 px-4 py-1.5 rounded-lg text-sm font-medium transition-colors">
-                Open Account
+              <button className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-1.5 rounded-lg text-sm font-medium transition-colors">
+                Download App
               </button>
             </div>
           </div>
@@ -47,257 +31,396 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative bg-white pt-32 pb-20 md:pb-40 px-4">
+      <section className="relative bg-black pt-40 pb-32 md:pb-56 px-4 overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              Banking for life's moments
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-4 leading-relaxed font-light">
-              Whether it's your first home, growing business, or planning your future—we're here to help you move forward.
-            </p>
-            <p className="text-lg text-emerald-700 font-semibold mb-12">
-              Strong roots. Endless possibilities.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="bg-emerald-800 text-white px-8 py-4 rounded-lg font-semibold hover:bg-emerald-900 transition-colors flex items-center justify-center gap-2"
-              >
-                Open an Account
-                <ArrowRight size={20} />
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="border-2 border-emerald-700 text-emerald-700 px-8 py-4 rounded-lg font-semibold hover:bg-emerald-50 transition-colors"
-              >
-                Talk to a Banker
-              </motion.button>
-            </div>
-          </motion.div>
-
-          {/* Hero Image Placeholder */}
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mt-20 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-2xl aspect-video flex items-center justify-center overflow-hidden"
-          >
-            <div className="text-center">
-              <div className="text-6xl mb-4">📱</div>
-              <p className="text-emerald-900 font-medium">Mobile Banking Experience</p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Trust Section */}
-      <section className="bg-gray-50 py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {[
-              { number: "120+", label: "Years of Trust" },
-              { number: "45", label: "Locations" },
-              { number: "500K+", label: "Happy Customers" },
-            ].map((stat, i) => (
-              <motion.div key={i} {...fadeInUp}>
-                <div className="text-4xl md:text-5xl font-bold text-emerald-800 mb-2">
-                  {stat.number}
-                </div>
-                <p className="text-gray-600 text-lg">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Watch App Showcase */}
-      <section className="bg-gray-900 text-white py-32 px-4 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          {/* Main Hero */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="text-center mb-20"
-          >
-            <motion.h2
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-black mb-6"
+              className="text-left"
             >
-              Banking on your wrist
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl text-gray-300 max-w-2xl mx-auto"
-            >
-              Check your balance, lock your card, and make payments instantly from your smartwatch.
-            </motion.p>
-          </motion.div>
-
-          {/* Watch Display */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-            className="flex justify-center mb-20"
-          >
-            <div className="relative w-full max-w-md h-96 bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl flex items-center justify-center overflow-hidden">
-              {/* Watch Mockup */}
               <motion.div
-                className="relative w-64 h-64 bg-black rounded-full shadow-2xl flex items-center justify-center border-8 border-gray-800"
-                animate={{
-                  boxShadow: [
-                    "0 0 0 0 rgba(0, 172, 91, 0.4)",
-                    "0 0 0 20px rgba(0, 172, 91, 0.2)",
-                    "0 0 0 0 rgba(0, 172, 91, 0.4)",
-                  ],
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="inline-block mb-6"
+              >
+                <span className="text-green-500 text-sm font-semibold tracking-widest uppercase">
+                  Banking on Your Wrist
+                </span>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="text-[3.5rem] md:text-[4.5rem] lg:text-[5rem] font-black leading-[1.1] text-white mb-8 tracking-tight"
+                style={{
+                  fontSize: "clamp(2.5rem, 8vw, 5rem)",
+                  fontWeight: 700,
+                  letterSpacing: "-0.05em",
                 }}
-                transition={{ duration: 3, repeat: Infinity }}
               >
-                <div className="text-center w-full">
-                  {/* Debit Card */}
-                  <motion.div
-                    className="mb-4 mx-auto w-32 h-20 bg-gradient-to-r from-emerald-600 to-emerald-500 rounded-lg flex items-center justify-center shadow-lg"
-                    animate={{ rotateY: [0, 5, -5, 0] }}
-                    transition={{ duration: 4, repeat: Infinity }}
-                  >
-                    <div className="text-xs font-bold text-white">💳 Central Bank</div>
-                  </motion.div>
+                Pay with a tap
+              </motion.h1>
 
-                  {/* Balance */}
-                  <div className="text-3xl font-bold text-white mb-3">
-                    $1,530.92
-                  </div>
+              <motion.p
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-xl md:text-2xl text-gray-400 mb-12 leading-relaxed max-w-md"
+              >
+                Check balances, lock your card, and make payments from your wrist. Banking has never been this seamless.
+              </motion.p>
 
-                  {/* Status */}
-                  <motion.div
-                    className="flex items-center justify-center gap-2 bg-emerald-600/20 border border-emerald-500/50 rounded-lg py-2 px-4 text-sm text-emerald-300"
-                    animate={{ opacity: [1, 0.6, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <span className="w-2 h-2 bg-emerald-400 rounded-full"></span>
-                    Active
-                  </motion.div>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: "💰",
-                title: "Check Balance",
-                desc: "See your account balance at a glance",
-              },
-              {
-                icon: "🔒",
-                title: "Lock Your Card",
-                desc: "Instantly lock/unlock your debit card",
-              },
-              {
-                icon: "💳",
-                title: "Tap to Pay",
-                desc: "Make contactless payments with a tap",
-              },
-              {
-                icon: "📲",
-                title: "Quick Transfers",
-                desc: "Send money instantly to friends",
-              },
-              {
-                icon: "🔔",
-                title: "Live Alerts",
-                desc: "Get real-time transaction notifications",
-              },
-              {
-                icon: "🛡️",
-                title: "Bank-Level Security",
-                desc: "Biometric authentication on your wrist",
-              },
-            ].map((feature, i) => (
               <motion.div
-                key={i}
-                {...fadeInUp}
-                whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0, 172, 91, 0.2)" }}
-                className="bg-gray-800/50 border border-gray-700 rounded-2xl p-8 cursor-pointer transition-all"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="flex flex-col sm:flex-row gap-4"
               >
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                <p className="text-gray-400">{feature.desc}</p>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+                >
+                  <Download size={20} />
+                  Download App
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="border-2 border-gray-600 text-white px-8 py-4 rounded-lg font-semibold hover:border-white transition-colors"
+                >
+                  Learn More
+                </motion.button>
               </motion.div>
-            ))}
-          </div>
+            </motion.div>
 
-          {/* CTA */}
+            {/* Right Watch Display */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="flex justify-center lg:justify-end"
+            >
+              <div className="relative w-72 h-72 md:w-96 md:h-96">
+                {/* Watch Body */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black rounded-full shadow-2xl flex items-center justify-center border-4 border-gray-800"
+                  animate={{
+                    boxShadow: [
+                      "0 0 30px rgba(0, 87, 184, 0.3)",
+                      "0 0 60px rgba(0, 87, 184, 0.5)",
+                      "0 0 30px rgba(0, 87, 184, 0.3)",
+                    ],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                >
+                  {/* Screen Display */}
+                  <motion.div
+                    className="absolute inset-8 bg-black rounded-full flex items-center justify-center border border-gray-700"
+                    style={{
+                      borderRadius: "28px",
+                    }}
+                  >
+                    <motion.div
+                      className="text-center w-full px-4"
+                      animate={{
+                        opacity: [1, 0.8, 1],
+                      }}
+                      transition={{ duration: 4, repeat: Infinity }}
+                    >
+                      <div className="mb-6">
+                        <motion.div
+                          className="w-16 h-10 mx-auto bg-gradient-to-r from-blue-600 to-blue-500 rounded-lg flex items-center justify-center text-xs font-bold text-white mb-4"
+                          animate={{ scale: [1, 1.05, 1] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        >
+                          💳
+                        </motion.div>
+                      </div>
+                      <div className="text-2xl md:text-3xl font-bold text-white mb-4">
+                        $5,240.32
+                      </div>
+                      <motion.div
+                        className="flex items-center justify-center gap-2 bg-green-600/20 border border-green-500/50 rounded-lg py-2 px-3 text-xs text-green-400 mx-auto w-fit"
+                        animate={{ opacity: [1, 0.7, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      >
+                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                        Ready
+                      </motion.div>
+                    </motion.div>
+                  </motion.div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pinned Watch Experience Section */}
+      <section className="relative bg-black py-48 px-4 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mt-20"
+            viewport={{ once: true }}
+            className="text-center mb-32"
           >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white px-12 py-4 rounded-lg font-semibold transition-colors inline-flex items-center gap-2"
-            >
-              Get the App
-              <ArrowRight size={20} />
-            </motion.button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Products Section */}
-      <section className="bg-white py-24 px-4">
-        <div className="max-w-7xl mx-auto">
-          <motion.div {...fadeInUp} className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Everything you need to thrive
+            <h2 className="text-5xl md:text-6xl font-black text-white mb-6 tracking-tight">
+              Four powerful ways to bank
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl">
-              From checking accounts to mortgages, we have solutions designed for your life.
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Everything you need, right on your wrist
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Watch Screens Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                title: "Checking & Savings",
-                desc: "Keep your money safe and accessible with competitive rates.",
+                title: "Check Balance",
+                desc: "See your account instantly",
+                icon: "💰",
+                color: "from-blue-600 to-blue-500",
               },
               {
-                title: "Home Loans",
-                desc: "Get pre-approved for your dream home with flexible terms.",
+                title: "Lock Card",
+                desc: "Secure your card instantly",
+                icon: "🔒",
+                color: "from-purple-600 to-purple-500",
               },
               {
-                title: "Business Banking",
-                desc: "Tools and support to help your business grow.",
+                title: "Accounts",
+                desc: "Manage all your accounts",
+                icon: "📊",
+                color: "from-green-600 to-green-500",
               },
               {
-                title: "Wealth Management",
-                desc: "Plan your financial future with expert guidance.",
+                title: "Activity",
+                desc: "View recent transactions",
+                icon: "📜",
+                color: "from-pink-600 to-pink-500",
               },
-            ].map((product, i) => (
-              <motion.button
+            ].map((screen, i) => (
+              <motion.div
                 key={i}
-                {...fadeInUp}
-                whileHover={{ y: -4 }}
-                className="text-left p-8 border border-gray-200 rounded-xl hover:border-emerald-700 hover:shadow-lg transition-all bg-white"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: i * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8 }}
+                className="group"
               >
+                <div className="relative">
+                  {/* Watch Frame */}
+                  <div className="bg-gradient-to-br from-gray-900 to-black rounded-3xl p-4 border border-gray-800 shadow-xl hover:shadow-2xl hover:shadow-blue-600/20 transition-shadow">
+                    {/* Screen Display */}
+                    <div
+                      className={`bg-gradient-to-br ${screen.color} rounded-2xl aspect-square flex flex-col items-center justify-center p-6 relative overflow-hidden`}
+                      style={{ borderRadius: "28px" }}
+                    >
+                      <motion.div
+                        className="text-5xl mb-4"
+                        animate={{ scale: [1, 1.1, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      >
+                        {screen.icon}
+                      </motion.div>
+                      <div className="text-xs text-white/80 font-medium text-center">
+                        {screen.title}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <h3 className="font-bold text-white text-lg">{screen.title}</h3>
+                    <p className="text-gray-400 text-sm">{screen.desc}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section with Glass Morphism */}
+      <section className="relative bg-black py-32 px-4 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-green-600/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-5xl md:text-6xl font-black text-white mb-6 tracking-tight">
+              Everything at your fingertip
+            </h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Banking features that were only possible on phone, now on your wrist
+            </p>
+          </motion.div>
+
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                icon: "💳",
+                title: "Instant Payments",
+                desc: "Tap to pay with just a glance at your watch",
+              },
+              {
+                icon: "🔒",
+                title: "Card Controls",
+                desc: "Lock or unlock your card in seconds",
+              },
+              {
+                icon: "💰",
+                title: "Balance Check",
+                desc: "See your balance anytime, anywhere",
+              },
+              {
+                icon: "📊",
+                title: "Spend Tracking",
+                desc: "Monitor your spending in real time",
+              },
+              {
+                icon: "🔔",
+                title: "Smart Alerts",
+                desc: "Get notified of transactions instantly",
+              },
+              {
+                icon: "🛡️",
+                title: "Bank-Level Security",
+                desc: "Biometric protection on your wrist",
+              },
+            ].map((feature, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: i * 0.05 }}
+                viewport={{ once: true }}
+                whileHover={{
+                  y: -8,
+                  boxShadow: "0 20px 40px rgba(0, 87, 184, 0.2)",
+                }}
+                className="group relative"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all">
+                  <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {feature.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline / Setup Section */}
+      <section className="relative bg-black py-32 px-4 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-5xl md:text-6xl font-black text-white mb-6 tracking-tight">
+              Get started in three steps
+            </h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Set up your watch app faster than you can say "instant payments"
+            </p>
+          </motion.div>
+
+          {/* Timeline */}
+          <div className="relative max-w-3xl mx-auto">
+            {/* Center Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-600 to-green-500 opacity-30" />
+
+            <div className="space-y-12">
+              {[
+                {
+                  step: "01",
+                  title: "Download the App",
+                  desc: "Get the Central Bank app on your smartwatch from the app store",
+                },
+                {
+                  step: "02",
+                  title: "Link Your Account",
+                  desc: "Connect your existing Central Bank account with biometric authentication",
+                },
+                {
+                  step: "03",
+                  title: "Start Banking",
+                  desc: "Instantly access payments, balances, and card controls from your wrist",
+                },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: i * 0.2 }}
+                  viewport={{ once: true }}
+                  className={`flex gap-8 items-center ${i % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}
+                >
+                  {/* Content */}
+                  <div className="flex-1">
+                    <div className={`${i % 2 === 0 ? "text-left" : "text-right"}`}>
+                      <div className="text-5xl font-black text-blue-600 mb-2">
+                        {item.step}
+                      </div>
+                      <h3 className="text-2xl font-bold text-white mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-gray-400 text-lg">{item.desc}</p>
+                    </div>
+                  </div>
+
+                  {/* Circle */}
+                  <motion.div
+                    className="relative z-10 flex-shrink-0"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      boxShadow: [
+                        "0 0 0 0 rgba(0, 87, 184, 0.4)",
+                        "0 0 0 15px rgba(0, 87, 184, 0)",
+                        "0 0 0 0 rgba(0, 87, 184, 0.4)",
+                      ],
+                    }}
+                    transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.3 }}
+                  >
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-500 rounded-full flex items-center justify-center border-4 border-black shadow-lg">
+                      <span className="text-white font-bold text-lg">✓</span>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
                 <h3 className="text-2xl font-semibold text-gray-900 mb-3">
                   {product.title}
                 </h3>
@@ -312,84 +435,84 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Experience Section */}
-      <section className="bg-emerald-900 text-white py-24 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <motion.div {...fadeInUp}>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                Banking on your terms
-              </h2>
-              <p className="text-xl text-emerald-100 mb-8 leading-relaxed">
-                Mobile app, online platform, or visit us in person. Choose how you want to bank.
-              </p>
-              <ul className="space-y-4">
-                {[
-                  "24/7 access to your accounts",
-                  "Instant transfers and payments",
-                  "Bank-level security",
-                  "Award-winning customer support",
-                ].map((feature, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="text-lime-300 font-bold">✓</span>
-                    <span className="text-emerald-100">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-            <motion.div
-              {...fadeInUp}
-              className="bg-emerald-800 rounded-2xl aspect-square flex items-center justify-center"
-            >
-              <div className="text-center">
-                <div className="text-6xl mb-4">💻</div>
-                <p className="text-emerald-200">Digital Banking Platform</p>
-              </div>
-            </motion.div>
-          </div>
+      {/* Compatibility Section */}
+      <section className="relative bg-black py-32 px-4 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/3 left-0 w-96 h-96 bg-green-600/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
         </div>
-      </section>
 
-      {/* Social Proof */}
-      <section className="bg-white py-24 px-4">
-        <div className="max-w-7xl mx-auto">
-          <motion.div {...fadeInUp} className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Why customers choose us
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-5xl md:text-6xl font-black text-white mb-6 tracking-tight">
+              Works with your watch
             </h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Compatible with the latest smartwatches from Apple and Google
+            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Compatibility Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {[
               {
-                quote:
-                  "Central Bank made opening my first account incredibly easy. The whole process took minutes.",
-                author: "Sarah Chen",
-                role: "First-time customer",
+                title: "Apple Watch",
+                version: "watchOS 11 and later",
+                devices: ["Series 10", "Ultra 3", "SE"],
+                icon: "⌚",
               },
               {
-                quote:
-                  "The team went above and beyond to help me get my business loan approved. Truly impressive service.",
-                author: "Marcus Rodriguez",
-                role: "Business owner",
+                title: "Google Pixel Watch",
+                version: "Wear OS 4 and later",
+                devices: ["Pixel Watch 3", "Pixel Watch 2", "Pixel Watch"],
+                icon: "⌚",
               },
-            ].map((testimonial, i) => (
+              {
+                title: "Samsung Galaxy Watch",
+                version: "Wear OS 3 and later",
+                devices: ["Galaxy Watch 7", "Galaxy Watch Ultra", "Galaxy Watch 6"],
+                icon: "⌚",
+              },
+              {
+                title: "More Devices",
+                version: "Wear OS 3 and later",
+                devices: ["Fossil", "Mobvoi", "Garmin & more"],
+                icon: "⌚",
+              },
+            ].map((device, i) => (
               <motion.div
                 key={i}
-                {...fadeInUp}
-                className="border border-gray-200 rounded-xl p-8 bg-gray-50"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: i * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{
+                  y: -8,
+                  borderColor: "rgba(0, 87, 184, 0.5)",
+                }}
+                className="group relative"
               >
-                <p className="text-lg text-gray-900 mb-6 leading-relaxed">
-                  "{testimonial.quote}"
-                </p>
-                <div>
-                  <p className="font-semibold text-gray-900">{testimonial.author}</p>
-                  <p className="text-sm text-gray-600">{testimonial.role}</p>
-                </div>
-                <div className="flex gap-1 mt-4 text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i}>★</span>
-                  ))}
+                <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-blue-600/50 transition-all">
+                  <div className="text-5xl mb-6">{device.icon}</div>
+                  <h3 className="text-2xl font-bold text-white mb-2">
+                    {device.title}
+                  </h3>
+                  <p className="text-green-400 text-sm font-semibold mb-4">
+                    {device.version}
+                  </p>
+                  <div className="space-y-2">
+                    {device.devices.map((d) => (
+                      <p key={d} className="text-gray-400 text-sm">
+                        • {d}
+                      </p>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -397,56 +520,97 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-gradient-to-r from-emerald-800 to-emerald-900 text-white py-24 px-4">
-        <div className="max-w-3xl mx-auto text-center">
-          <motion.div {...fadeInUp}>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Ready to get started?
+      {/* Final CTA Section */}
+      <section className="relative bg-gradient-to-br from-blue-600 via-black to-black text-white py-32 px-4 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-green-600/20 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-5xl md:text-6xl font-black mb-8 leading-tight">
+              Get banking on your wrist today
             </h2>
-            <p className="text-xl text-emerald-100 mb-10">
-              Join thousands of customers who trust Central Bank.
+            <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed">
+              Download the Central Bank app now and unlock seamless payments, instant card control, and real-time balance checks—all from your smartwatch.
             </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white text-emerald-800 px-10 py-4 rounded-lg font-semibold hover:bg-gray-50 transition-colors inline-flex items-center gap-2"
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              Open Account Now
-              <ArrowRight size={20} />
-            </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="bg-white text-blue-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all inline-flex items-center justify-center gap-3 group"
+              >
+                <Download size={24} className="group-hover:scale-110 transition-transform" />
+                Download App
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="border-2 border-white text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-white/10 transition-all"
+              >
+                Find a Branch
+              </motion.button>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="text-gray-400 text-sm mt-8"
+            >
+              Available on Apple App Store and Google Play Store
+            </motion.p>
           </motion.div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-emerald-950 text-gray-400 py-16 px-4">
+      <footer className="bg-gray-950 text-gray-500 py-16 px-4 border-t border-gray-800">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             {[
               {
-                title: "Products",
-                links: ["Checking", "Savings", "Loans", "Investing"],
+                title: "Product",
+                links: ["Features", "Compatibility", "Security", "FAQ"],
               },
               {
                 title: "Banking",
-                links: ["Personal", "Business", "Wealth", "Commercial"],
+                links: ["Personal", "Business", "About", "Careers"],
               },
               {
                 title: "Support",
-                links: ["Help Center", "Contact", "Security", "Accessibility"],
+                links: ["Help Center", "Contact", "Status", "Accessibility"],
               },
               {
-                title: "Company",
-                links: ["About", "Careers", "Press", "Community"],
+                title: "Legal",
+                links: ["Privacy", "Terms", "Security", "Cookies"],
               },
             ].map((section, i) => (
               <div key={i}>
-                <h4 className="font-semibold text-white mb-4">{section.title}</h4>
+                <h4 className="font-semibold text-white mb-4 text-sm">
+                  {section.title}
+                </h4>
                 <ul className="space-y-2">
                   {section.links.map((link) => (
                     <li key={link}>
-                      <a href="#" className="hover:text-white transition-colors text-sm">
+                      <a
+                        href="#"
+                        className="hover:text-white transition-colors text-sm"
+                      >
                         {link}
                       </a>
                     </li>
@@ -455,9 +619,9 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          <div className="border-t border-gray-800 pt-8">
-            <p className="text-center text-sm">
-              © 2024 Central Bank. Member FDIC.
+          <div className="border-t border-gray-800 pt-8 text-center">
+            <p className="text-sm">
+              © 2024 Central Bank. All rights reserved. Member FDIC.
             </p>
           </div>
         </div>
