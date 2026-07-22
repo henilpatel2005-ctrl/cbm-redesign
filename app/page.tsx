@@ -118,6 +118,149 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Watch App Showcase */}
+      <section className="bg-gray-900 text-white py-32 px-4 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          {/* Main Hero */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="text-center mb-20"
+          >
+            <motion.h2
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-5xl md:text-6xl lg:text-7xl font-black mb-6"
+            >
+              Banking on your wrist
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-xl text-gray-300 max-w-2xl mx-auto"
+            >
+              Check your balance, lock your card, and make payments instantly from your smartwatch.
+            </motion.p>
+          </motion.div>
+
+          {/* Watch Display */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            className="flex justify-center mb-20"
+          >
+            <div className="relative w-full max-w-md h-96 bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl flex items-center justify-center overflow-hidden">
+              {/* Watch Mockup */}
+              <motion.div
+                className="relative w-64 h-64 bg-black rounded-full shadow-2xl flex items-center justify-center border-8 border-gray-800"
+                animate={{
+                  boxShadow: [
+                    "0 0 0 0 rgba(0, 172, 91, 0.4)",
+                    "0 0 0 20px rgba(0, 172, 91, 0.2)",
+                    "0 0 0 0 rgba(0, 172, 91, 0.4)",
+                  ],
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                <div className="text-center w-full">
+                  {/* Debit Card */}
+                  <motion.div
+                    className="mb-4 mx-auto w-32 h-20 bg-gradient-to-r from-emerald-600 to-emerald-500 rounded-lg flex items-center justify-center shadow-lg"
+                    animate={{ rotateY: [0, 5, -5, 0] }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                  >
+                    <div className="text-xs font-bold text-white">💳 Central Bank</div>
+                  </motion.div>
+
+                  {/* Balance */}
+                  <div className="text-3xl font-bold text-white mb-3">
+                    $1,530.92
+                  </div>
+
+                  {/* Status */}
+                  <motion.div
+                    className="flex items-center justify-center gap-2 bg-emerald-600/20 border border-emerald-500/50 rounded-lg py-2 px-4 text-sm text-emerald-300"
+                    animate={{ opacity: [1, 0.6, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <span className="w-2 h-2 bg-emerald-400 rounded-full"></span>
+                    Active
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: "💰",
+                title: "Check Balance",
+                desc: "See your account balance at a glance",
+              },
+              {
+                icon: "🔒",
+                title: "Lock Your Card",
+                desc: "Instantly lock/unlock your debit card",
+              },
+              {
+                icon: "💳",
+                title: "Tap to Pay",
+                desc: "Make contactless payments with a tap",
+              },
+              {
+                icon: "📲",
+                title: "Quick Transfers",
+                desc: "Send money instantly to friends",
+              },
+              {
+                icon: "🔔",
+                title: "Live Alerts",
+                desc: "Get real-time transaction notifications",
+              },
+              {
+                icon: "🛡️",
+                title: "Bank-Level Security",
+                desc: "Biometric authentication on your wrist",
+              },
+            ].map((feature, i) => (
+              <motion.div
+                key={i}
+                {...fadeInUp}
+                whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0, 172, 91, 0.2)" }}
+                className="bg-gray-800/50 border border-gray-700 rounded-2xl p-8 cursor-pointer transition-all"
+              >
+                <div className="text-4xl mb-4">{feature.icon}</div>
+                <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+                <p className="text-gray-400">{feature.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mt-20"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-emerald-600 hover:bg-emerald-700 text-white px-12 py-4 rounded-lg font-semibold transition-colors inline-flex items-center gap-2"
+            >
+              Get the App
+              <ArrowRight size={20} />
+            </motion.button>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Products Section */}
       <section className="bg-white py-24 px-4">
         <div className="max-w-7xl mx-auto">
