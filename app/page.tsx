@@ -106,55 +106,83 @@ export default function HomePage() {
               transition={{ duration: 1, delay: 0.2 }}
               className="flex justify-center lg:justify-end"
             >
-              <div className="relative w-72 h-72 md:w-96 md:h-96">
-                {/* Watch Body */}
+              <div className="relative w-80 h-80 md:w-96 md:h-96">
+                {/* Watch Body with realistic styling */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black rounded-full shadow-2xl flex items-center justify-center border-4 border-gray-800"
+                  className="absolute inset-0 rounded-full flex items-center justify-center"
+                  style={{
+                    background: "radial-gradient(circle at 30% 30%, #3a3a3a, #0a0a0a)",
+                    border: "8px solid #1a1a1a",
+                    boxShadow: `
+                      0 0 80px rgba(0, 87, 184, 0.4),
+                      inset 0 0 40px rgba(0, 0, 0, 0.8),
+                      0 20px 60px rgba(0, 0, 0, 0.6)
+                    `,
+                  }}
                   animate={{
                     boxShadow: [
-                      "0 0 30px rgba(0, 87, 184, 0.3)",
-                      "0 0 60px rgba(0, 87, 184, 0.5)",
-                      "0 0 30px rgba(0, 87, 184, 0.3)",
+                      `0 0 60px rgba(0, 87, 184, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8), 0 20px 60px rgba(0, 0, 0, 0.6)`,
+                      `0 0 100px rgba(0, 87, 184, 0.5), inset 0 0 40px rgba(0, 0, 0, 0.8), 0 20px 60px rgba(0, 0, 0, 0.6)`,
+                      `0 0 60px rgba(0, 87, 184, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8), 0 20px 60px rgba(0, 0, 0, 0.6)`,
                     ],
                   }}
                   transition={{ duration: 3, repeat: Infinity }}
                 >
                   {/* Screen Display */}
-                  <motion.div
-                    className="absolute inset-8 bg-black rounded-full flex items-center justify-center border border-gray-700"
+                  <div
+                    className="flex flex-col items-center justify-between py-8 px-6 text-center w-fit gap-3"
                     style={{
-                      borderRadius: "28px",
+                      width: "320px",
+                      height: "320px",
+                      background: "#000000",
+                      borderRadius: "32px",
+                      border: "2px solid #222",
+                      boxShadow: "inset 0 0 30px rgba(0, 0, 0, 0.5)",
                     }}
                   >
                     <motion.div
-                      className="text-center w-full px-4"
-                      animate={{
-                        opacity: [1, 0.8, 1],
-                      }}
+                      className="text-xs font-semibold text-gray-600 uppercase tracking-widest"
+                      animate={{ opacity: [1, 0.7, 1] }}
                       transition={{ duration: 4, repeat: Infinity }}
                     >
-                      <div className="mb-6">
-                        <motion.div
-                          className="w-16 h-10 mx-auto bg-gradient-to-r from-blue-600 to-blue-500 rounded-lg flex items-center justify-center text-xs font-bold text-white mb-4"
-                          animate={{ scale: [1, 1.05, 1] }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                        >
-                          💳
-                        </motion.div>
-                      </div>
-                      <div className="text-2xl md:text-3xl font-bold text-white mb-4">
-                        $5,240.32
-                      </div>
-                      <motion.div
-                        className="flex items-center justify-center gap-2 bg-green-600/20 border border-green-500/50 rounded-lg py-2 px-3 text-xs text-green-400 mx-auto w-fit"
-                        animate={{ opacity: [1, 0.7, 1] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      >
-                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                        Ready
-                      </motion.div>
+                      Central Bank
                     </motion.div>
-                  </motion.div>
+
+                    {/* Card Mockup */}
+                    <motion.div
+                      className="w-24 h-16 bg-gradient-to-r from-blue-600 to-blue-500 rounded-lg flex items-center justify-center text-sm font-bold text-white shadow-lg"
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      💳 Card
+                    </motion.div>
+
+                    {/* Balance */}
+                    <motion.div
+                      className="text-white font-black leading-none"
+                      style={{ fontSize: "2.2rem", letterSpacing: "-0.02em" }}
+                      animate={{ opacity: [1, 0.85, 1] }}
+                      transition={{ duration: 4, repeat: Infinity }}
+                    >
+                      $5,240
+                    </motion.div>
+
+                    <div className="text-xs text-gray-500">Checking</div>
+
+                    {/* Status */}
+                    <motion.div
+                      className="flex items-center gap-1.5 bg-green-600/20 border border-green-500/60 rounded-full py-1.5 px-3 text-xs font-semibold text-green-400"
+                      animate={{ opacity: [1, 0.7, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      <motion.span
+                        className="w-1.5 h-1.5 bg-green-500 rounded-full"
+                        animate={{ opacity: [1, 0.5, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      />
+                      Active
+                    </motion.div>
+                  </div>
                 </motion.div>
               </div>
             </motion.div>
