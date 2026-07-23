@@ -1,291 +1,299 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { ArrowRight, ChevronDown, Home, TrendingUp, Lock, Eye, Heart, BookOpen, Menu, X, Send, Shield, Smartphone } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { HeroScrollDemo } from "@/components/hero-scroll-demo";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
-  },
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.8 },
+  viewport: { once: true, margin: "-100px" }
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-};
+export default function HomePage() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-const floatingVariants = {
-  animate: {
-    y: [0, -20, 0],
-    transition: { duration: 4, repeat: Infinity },
-  },
-};
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      const scrollY = window.scrollY;
+      const elements = containerRef.current.querySelectorAll("[data-parallax]");
+      elements.forEach((el) => {
+        const speed = parseFloat((el as HTMLElement).dataset.speed || "0.5");
+        (el as HTMLElement).style.transform = `translateY(${scrollY * speed}px)`;
+      });
+    };
 
-export default function Home() {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="min-h-screen flex flex-col bg-black overflow-x-hidden">
-      {/* Animated Background */}
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-primary/5 to-black"></div>
-        <motion.div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
-          animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl"
-          animate={{ x: [0, -50, 0], y: [0, -30, 0] }}
-          transition={{ duration: 10, repeat: Infinity, delay: 1 }}
-        />
-        <motion.div
-          className="absolute top-1/2 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"
-          animate={{ x: [0, -40, 0], y: [0, 40, 0] }}
-          transition={{ duration: 12, repeat: Infinity, delay: 2 }}
-        />
-      </div>
-
+    <div ref={containerRef} className="bg-white text-gray-900 overflow-x-hidden">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-black/50 backdrop-blur-xl border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <motion.div
-              className="text-2xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
-              whileHover={{ scale: 1.05 }}
-            >
-              💚 Central Bank
-            </motion.div>
-            <div className="hidden md:flex gap-8">
-              {["Personal", "Business", "About", "Contact"].map((item) => (
-                <motion.a
-                  key={item}
-                  href="#"
-                  className="text-white/70 hover:text-accent transition-colors relative group"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  {item}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-accent to-primary group-hover:w-full transition-all duration-300"></span>
-                </motion.a>
-              ))}
+      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex items-center gap-3"
+          >
+            {/* Logo */}
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#004B36] to-[#00AC5B] flex items-center justify-center">
+                <span className="text-white font-black text-lg">C</span>
+              </div>
+              <div className="flex flex-col leading-tight">
+                <span className="font-black text-gray-900 text-sm">CENTRAL</span>
+                <span className="font-bold text-[#004B36] text-xs">MIDWEST</span>
+              </div>
             </div>
-            <motion.button
-              className="bg-gradient-to-r from-primary to-accent hover:shadow-lg hover:shadow-accent/50 text-white font-bold py-2 px-6 rounded-full transition-all"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+          </motion.div>
+
+          <div className="hidden md:flex gap-8 items-center">
+            {["Products", "Borrow", "Wealth", "Learn", "About"].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-sm text-gray-600 hover:text-[#004B36] font-medium transition-colors"
+              >
+                {item}
+              </a>
+            ))}
+          </div>
+
+          <div className="flex gap-3 items-center">
+            <button className="px-4 py-2 text-sm text-gray-900 hover:bg-gray-100 rounded-lg transition-colors font-medium">
               Sign In
-            </motion.button>
+            </button>
+            <button className="px-5 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-[#004B36] to-[#00AC5B] rounded-lg hover:shadow-lg hover:shadow-emerald-500/30 transition-all hover:scale-105">
+              Open Account
+            </button>
+            <button
+              className="md:hidden p-2"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-        {/* Animated Grid Background */}
-        <div className="absolute inset-0">
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
-                <path d="M 50 0 L 0 0 0 50" fill="none" stroke="white" strokeWidth="0.1" opacity="0.1"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
-        </div>
-
-        <motion.div
-          className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col md:flex-row items-center justify-between gap-12 w-full"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {/* Left Content */}
-          <motion.div className="flex-1 text-white z-10 max-w-2xl" variants={containerVariants}>
-            <motion.div
-              variants={itemVariants}
-              className="inline-block mb-6 px-4 py-2 bg-gradient-to-r from-primary/30 to-accent/30 backdrop-blur-sm rounded-full border border-accent/50 hover:border-accent transition-all"
-            >
-              <span className="text-sm font-semibold bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
-                🎓 Park University Partnership
-              </span>
-            </motion.div>
-
-            <motion.h1 variants={itemVariants} className="text-6xl md:text-7xl font-black mb-6 leading-tight">
-              Earn{" "}
-              <span className="bg-gradient-to-r from-yellow-300 via-yellow-200 to-yellow-400 bg-clip-text text-transparent drop-shadow-lg">
-                $500
-              </span>{" "}
-              <motion.span
-                className="inline-block text-accent"
-                animate={{ rotate: [0, 5, -5, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                Today
-              </motion.span>
-            </motion.h1>
-
-            <motion.p variants={itemVariants} className="text-xl md:text-2xl mb-6 text-white/80 leading-relaxed font-light">
-              Open a Park University Checking Account and get{" "}
-              <span className="font-bold text-accent">$500 instantly</span>. Celebrate 150 years with us!
-            </motion.p>
-
-            <motion.div variants={itemVariants} className="space-y-3 mb-8">
-              {["✨ Quick 3-step process", "🔒 Bank-level security", "📱 100% mobile friendly"].map(
-                (feature, i) => (
-                  <motion.p
-                    key={i}
-                    className="text-lg text-white/70 flex items-center gap-3"
-                    whileHover={{ x: 10 }}
-                  >
-                    <span className="text-2xl">{feature.split(" ")[0]}</span>
-                    {feature.substring(2)}
-                  </motion.p>
-                )
-              )}
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
-              <motion.button
-                className="group relative overflow-hidden bg-gradient-to-r from-yellow-400 to-yellow-300 text-black font-bold text-lg px-10 py-4 rounded-full hover:shadow-2xl hover:shadow-yellow-400/50 transition-all"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="relative z-10">Open Account Now →</span>
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-yellow-400 -z-10"
-                  initial={{ x: "100%" }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.button>
-
-              <motion.button
-                className="border-2 border-accent text-accent hover:bg-accent/10 font-bold text-lg px-10 py-4 rounded-full hover:shadow-2xl hover:shadow-accent/30 transition-all"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Code: PARKPIRATES
-              </motion.button>
-            </motion.div>
-          </motion.div>
-
-          {/* Right Visual */}
-          <motion.div className="flex-1 relative z-10" variants={floatingVariants} animate="animate">
-            <div className="relative">
-              {/* Glowing orbs */}
-              <motion.div
-                className="absolute -top-20 -right-20 w-64 h-64 bg-accent/30 rounded-full blur-3xl"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 4, repeat: Infinity }}
-              />
-              <motion.div
-                className="absolute -bottom-20 -left-20 w-64 h-64 bg-primary/30 rounded-full blur-3xl"
-                animate={{ scale: [1, 1.3, 1] }}
-                transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-              />
-
-              {/* Card */}
-              <motion.div
-                className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl p-8 hover:border-accent/50 transition-all shadow-2xl"
-                whileHover={{ y: -20, boxShadow: "0 20px 60px rgba(0, 172, 91, 0.3)" }}
-              >
-                <div className="space-y-6">
-                  <div>
-                    <div className="text-6xl mb-4">🎓</div>
-                    <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-2">
-                      Park University
-                    </h2>
-                    <p className="text-white/60 text-lg">150th Anniversary Celebration</p>
-                  </div>
-
-                  <motion.div
-                    className="h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full"
-                    animate={{ scaleX: [0.5, 1, 0.5] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  />
-
-                  <motion.div
-                    className="bg-gradient-to-r from-primary to-accent text-white py-4 px-6 rounded-xl font-bold text-xl text-center hover:shadow-lg hover:shadow-accent/50 transition-all"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    💰 $500 Checking Bonus
-                  </motion.div>
-
-                  <p className="text-white/50 text-center">Official Banking Partner</p>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-        </motion.div>
+      {/* Hero Section with Scroll Animation */}
+      <section className="pt-32">
+        <HeroScrollDemo />
       </section>
 
-      {/* Stats Section */}
-      <section className="relative py-20 md:py-32 px-4">
+      {/* Bank with Us - Products Section */}
+      <section className="relative py-32 px-6 bg-white" id="products">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div {...fadeInUp} className="mb-20">
+            <h2 className="text-5xl md:text-6xl font-black mb-6 text-gray-900">
+              Bank with Us
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl">
+              Your financial journey starts here. Enjoy a full suite of products and services to support every step of your unique financial vision.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
             {[
-              { number: "106+", label: "Years Strong", icon: "🏦" },
-              { number: "210", label: "Locations", icon: "📍" },
-              { number: "$500", label: "Instant Bonus", icon: "💰" },
-            ].map((stat, i) => (
+              { icon: Home, title: "Checking", desc: "Accounts", color: "from-[#004B36]" },
+              { icon: TrendingUp, title: "Savings", desc: "Accounts", color: "from-[#00AC5B]" },
+              { icon: Lock, title: "Credit", desc: "Cards", color: "from-[#008457]" },
+              { icon: Send, title: "Loans &", desc: "Credit", color: "from-[#004B36]" },
+              { icon: Heart, title: "Investing", desc: "Wealth", color: "from-[#00AC5B]" },
+            ].map((item, i) => (
               <motion.div
                 key={i}
-                className="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 p-8 rounded-2xl hover:border-accent/50 transition-all overflow-hidden"
-                whileHover={{ y: -10 }}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8 }}
+                className="group bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-xl hover:border-[#004B36]/20 transition-all cursor-pointer"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-accent/0 via-accent/10 to-accent/0 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative z-10">
-                  <div className="text-5xl mb-4">{stat.icon}</div>
-                  <div className="text-4xl font-black bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent mb-2">
-                    {stat.number}
-                  </div>
-                  <p className="text-white/70 text-lg">{stat.label}</p>
+                <div className={`w-12 h-12 bg-gradient-to-br ${item.color} to-[#00AC5B] rounded-xl flex items-center justify-center mb-4 group-hover:shadow-lg group-hover:shadow-emerald-500/20 transition-all`}>
+                  <item.icon className="text-white" size={24} />
                 </div>
+                <h3 className="font-black text-lg mb-1 text-gray-900">{item.title}</h3>
+                <p className="text-gray-600 text-sm">{item.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="relative py-20 md:py-32 px-4">
+      {/* Borrow Section */}
+      <section className="relative py-32 px-6 bg-gradient-to-b from-gray-50 to-white" id="borrow">
         <div className="max-w-7xl mx-auto">
-          <motion.h2
-            className="text-5xl md:text-6xl font-black text-center mb-16 bg-gradient-to-r from-white via-accent to-white bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-          >
-            Why Choose Us?
-          </motion.h2>
+          <motion.div {...fadeInUp} className="mb-20">
+            <span className="text-sm font-black text-[#004B36] tracking-widest uppercase">
+              Borrow
+            </span>
+            <h2 className="text-5xl md:text-6xl font-black mb-6 text-gray-900 mt-2">
+              Lending Made Simple
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl">
+              We believe lending should be easy and stress-free, no matter how big your dreams.
+            </p>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-3 gap-8">
             {[
-              { title: "Fast Setup", desc: "Open account in minutes", icon: "⚡" },
-              { title: "Secure", desc: "Bank-grade security", icon: "🔒" },
-              { title: "24/7 Support", desc: "Always here for you", icon: "💬" },
-              { title: "Great Rates", desc: "Competitive and fair", icon: "📈" },
-            ].map((feature, i) => (
+              {
+                title: "Home Loans",
+                desc: "Let us help you find the perfect mortgage solution to turn your dream home into a reality.",
+                icon: Home,
+              },
+              {
+                title: "Personal Loans",
+                desc: "Enjoy flexible personal loan options that provide the funds you need with competitive rates.",
+                icon: Heart,
+              },
+              {
+                title: "Auto Loans",
+                desc: "Finance your next ride with ease, whether you're buying new, used, or refinancing.",
+                icon: TrendingUp,
+              },
+            ].map((item, i) => (
               <motion.div
                 key={i}
-                className="group p-6 rounded-2xl border border-white/10 hover:border-accent/50 bg-gradient-to-br from-white/5 to-transparent hover:from-accent/20 hover:to-transparent transition-all cursor-pointer"
-                whileHover={{ y: -15, boxShadow: "0 20px 40px rgba(0, 172, 91, 0.2)" }}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="group bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-xl hover:border-[#004B36]/20 transition-all"
               >
-                <motion.div
-                  className="text-4xl mb-4"
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, delay: i * 0.2 }}
-                >
-                  {feature.icon}
-                </motion.div>
-                <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
-                <p className="text-white/60">{feature.desc}</p>
+                <div className="w-12 h-12 bg-gradient-to-br from-[#004B36] to-[#00AC5B] rounded-xl flex items-center justify-center mb-4">
+                  <item.icon className="text-white" size={24} />
+                </div>
+                <h3 className="text-2xl font-black mb-4 text-gray-900">{item.title}</h3>
+                <p className="text-gray-600 leading-relaxed mb-6">{item.desc}</p>
+                <a href="#" className="inline-flex items-center gap-2 text-[#004B36] font-bold hover:gap-3 transition-all">
+                  Learn More <ArrowRight size={20} />
+                </a>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Wealth Management */}
+      <section className="relative py-32 px-6 bg-white" id="wealth">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              <span className="text-sm font-black text-[#004B36] tracking-widest uppercase">
+                Wealth Management
+              </span>
+              <h2 className="text-4xl md:text-5xl font-black mb-6 text-gray-900 mt-2">
+                Plan, Grow, and Protect Your Wealth
+              </h2>
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                Our wealth management services offer expert guidance, personalized strategies, and a full suite of investment solutions to help you build a secure financial future.
+              </p>
+              <button className="px-8 py-4 bg-gradient-to-r from-[#004B36] to-[#00AC5B] text-white font-bold rounded-lg hover:shadow-lg hover:shadow-emerald-500/30 transition-all hover:scale-105">
+                Get Started
+              </button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true, margin: "-100px" }}
+              className="bg-gradient-to-br from-[#f0fdf4] to-[#d1fae5] rounded-2xl p-12 h-96 flex flex-col items-center justify-center relative overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-[#004B36]/10 via-[#00AC5B]/10 to-[#008457]/10"></div>
+              <div className="relative z-10 text-center">
+                <TrendingUp className="text-[#004B36] mx-auto mb-4" size={64} />
+                <p className="text-gray-700 font-black text-2xl">Investment Growth</p>
+                <p className="text-gray-600 text-sm mt-2">Diversified portfolio strategies</p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Us */}
+      <section className="relative py-32 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <motion.div {...fadeInUp} className="mb-16">
+            <h2 className="text-5xl md:text-6xl font-black mb-6 text-gray-900">
+              About Us
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl">
+              Trusted by millions, we've been serving communities with excellence for over a century.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { stat: "115+", label: "Years of Trusted Service" },
+              { stat: "230", label: "Locations Nationwide" },
+              { stat: "6,708", label: "Hours of Service Weekly" },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white border border-gray-200 rounded-2xl p-8 text-center hover:shadow-xl hover:border-[#004B36]/20 transition-all"
+              >
+                <div className="text-5xl font-black bg-gradient-to-r from-[#004B36] to-[#00AC5B] bg-clip-text text-transparent mb-3">
+                  {item.stat}
+                </div>
+                <p className="text-gray-600 text-lg font-medium">{item.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Learning Center */}
+      <section className="relative py-32 px-6 bg-white" id="learn">
+        <div className="max-w-7xl mx-auto">
+          <motion.div {...fadeInUp} className="mb-16">
+            <h2 className="text-5xl md:text-6xl font-black mb-6 text-gray-900">
+              Learning Center
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl">
+              Explore our latest financial insights and tips to help you make informed decisions.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { tag: "Financial Tips", title: "Smart Savings Strategies", desc: "Learn proven methods to grow your savings and reach your financial goals faster.", icon: BookOpen },
+              { tag: "Home Ownership", title: "First-Time Homebuyer Guide", desc: "Everything you need to know about purchasing your first home with confidence.", icon: Home },
+              { tag: "Investment Basics", title: "Introduction to Investing", desc: "Discover how to start your investment journey and build long-term wealth.", icon: TrendingUp },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-xl hover:border-[#004B36]/20 transition-all cursor-pointer group"
+              >
+                <div className="h-40 bg-gradient-to-br from-[#f0fdf4] to-[#d1fae5] flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <item.icon className="text-[#004B36]" size={48} />
+                </div>
+                <div className="p-6">
+                  <span className="text-xs font-black text-[#004B36] uppercase tracking-wider">{item.tag}</span>
+                  <h3 className="text-xl font-black text-gray-900 mt-2 mb-3">{item.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -293,63 +301,83 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 md:py-32 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/40 via-accent/40 to-primary/40 blur-3xl opacity-30" />
-
-        <motion.div
-          className="relative max-w-4xl mx-auto text-center"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-        >
-          <h2 className="text-5xl md:text-6xl font-black text-white mb-6">
-            Ready to Level Up?
-          </h2>
-          <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-            Join thousands of satisfied customers. Get your $500 bonus today.
-          </p>
-
-          <motion.button
-            className="group relative overflow-hidden bg-gradient-to-r from-accent via-primary to-accent text-white font-bold text-xl px-12 py-5 rounded-full hover:shadow-2xl hover:shadow-accent/50 transition-all"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+      <section className="relative py-24 px-6 bg-gradient-to-r from-[#004B36] via-[#00AC5B] to-[#008457] text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-black mb-6"
           >
-            <span className="relative z-10">Start Banking Now 🚀</span>
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-primary to-accent -z-10"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: 0 }}
-              transition={{ duration: 0.5 }}
-            />
+            Ready to Transform Your Financial Life?
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="text-xl max-w-2xl mx-auto mb-8 opacity-95"
+          >
+            Join millions who trust Central Bank of the Midwest to help them achieve their financial dreams.
+          </motion.p>
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="px-10 py-4 bg-white text-[#004B36] font-bold rounded-lg hover:scale-105 transition-transform hover:shadow-xl"
+          >
+            Open an Account Today
           </motion.button>
-        </motion.div>
+        </div>
       </section>
 
       {/* Footer */}
-      <footer className="relative bg-black/50 backdrop-blur-xl border-t border-white/10 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-            {[
-              { title: "Products", items: ["Checking", "Savings", "Loans"] },
-              { title: "Company", items: ["About", "Careers", "Contact"] },
-              { title: "Support", items: ["Help Center", "Security", "Accessibility"] },
-              { title: "Legal", items: ["Privacy", "Terms", "FDIC"] },
-            ].map((section, i) => (
-              <div key={i}>
-                <h4 className="font-bold text-white mb-4">{section.title}</h4>
-                <ul className="space-y-2">
-                  {section.items.map((item) => (
-                    <li key={item}>
-                      <a href="#" className="text-white/60 hover:text-accent transition-colors">
-                        {item}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+      <footer className="bg-gray-900 text-gray-300 py-16 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-12">
+            <div>
+              <h3 className="font-black text-white mb-4">Banking</h3>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="hover:text-white transition-colors">Checking Accounts</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Savings Accounts</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Credit Cards</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Loans</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-black text-white mb-4">Company</h3>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Press</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-black text-white mb-4">Support</h3>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">FAQs</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Security</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Accessibility</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-black text-white mb-4">Legal</h3>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Cookie Policy</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Disclosures</a></li>
+              </ul>
+            </div>
           </div>
-          <div className="border-t border-white/10 pt-8 text-center">
-            <p className="text-white/60">© 2026 Central Bank. Strong Roots. Endless Possibilities.</p>
+
+          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+            <p>&copy; 2024 Central Bank of the Midwest. All rights reserved.</p>
+            <p>Member FDIC | Equal Housing Opportunity</p>
           </div>
         </div>
       </footer>

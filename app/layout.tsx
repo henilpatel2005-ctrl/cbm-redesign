@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Central Bank | Strong Roots. Endless Possibilities.",
-  description: "Central Bank offers personal and business banking solutions with checking, savings, loans, and wealth management services.",
+  title: "Central Bank | Dream Bigger, Bank Better",
+  description: "Banking built around your life. Whether you're buying your first home, growing a business, or planning what's next, Central Bank helps you move forward with confidence.",
 };
 
 export default function RootLayout({
