@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { HeroScrollDemo } from "@/components/hero-scroll-demo";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -249,6 +250,11 @@ export default function Home() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Scroll Animation Demo Section */}
+      <section className="relative py-20 md:py-32 px-4 bg-gradient-to-b from-black via-black/50 to-black">
+        <HeroScrollDemo />
       </section>
 
       {/* Features Grid */}
